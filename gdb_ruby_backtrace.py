@@ -16,7 +16,7 @@ def get_lineno(iseq, pos):
   elif t_size == 1:
     return t[0]['line_no']
 
-  for i in range(0, t_size):
+  for i in range(0, int(t_size)):
     if pos == t[i]['position']:
       return t[i]['line_no']
     elif t[i]['position'] > pos:
@@ -37,7 +37,7 @@ start_cfp = (th['stack'] + th['stack_size']).cast(control_frame_t.pointer()) - 2
 size = start_cfp - last_cfp + 1
 cfp = start_cfp
 call_stack = []
-for i in range(0, size):
+for i in range(0, int(size)):
   if cfp['iseq'].dereference().address != 0:
     if cfp['pc'].dereference().address != 0:
       s = "{}:{}:in `{}'".format(get_rstring(cfp['iseq']['location']['path']),
@@ -48,6 +48,6 @@ for i in range(0, size):
   cfp -= 1
 
 for i in reversed(call_stack):
-  print i
+  print(i)
 
 end
