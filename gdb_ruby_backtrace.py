@@ -40,9 +40,11 @@ call_stack = []
 for i in range(0, int(size)):
   if cfp['iseq'].dereference().address != 0:
     if cfp['pc'].dereference().address != 0:
-      s = "{}:{}:in `{}'".format(get_rstring(cfp['iseq']['location']['path']),
+      s = "{0}:{1}:in `{2}'".format(
+        get_rstring(cfp['iseq']['location']['path']),
         get_lineno(cfp['iseq'], cfp['pc'] - cfp['iseq']['iseq_encoded']),
-        get_rstring(cfp['iseq']['location']['label']))
+        get_rstring(cfp['iseq']['location']['label'])
+      )
       call_stack.append(s)
 
   cfp -= 1
