@@ -63,13 +63,13 @@ class PrintRubyStack(gdb.Command):
         call_stack = []
         for i in range(0, int(num_frames)):
             if cfp['iseq'].dereference().address != 0:
-              if cfp['pc'].dereference().address != 0:
-                s = "{0}:{1}:in `{2}'".format(
-                    self.get_rstring(cfp['iseq']['location']['path']),
-                    self.get_lineno(cfp['iseq'], cfp['pc'] - cfp['iseq']['iseq_encoded']),
-                    self.get_rstring(cfp['iseq']['location']['label'])
-                )
-                call_stack.append(s)
+                if cfp['pc'].dereference().address != 0:
+                    s = "{0}:{1}:in `{2}'".format(
+                        self.get_rstring(cfp['iseq']['location']['path']),
+                        self.get_lineno(cfp['iseq'], cfp['pc'] - cfp['iseq']['iseq_encoded']),
+                        self.get_rstring(cfp['iseq']['location']['label'])
+                    )
+                    call_stack.append(s)
 
             cfp -= 1
 
